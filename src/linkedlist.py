@@ -36,3 +36,32 @@ class LinkedList:
             elements.append(str(current.data))
             current = current.next
         print(" -> ".join(elements) + " -> None")
+
+    def delete_node(self, key):
+        current = self.head
+
+        # birinci element silinirsə
+        if current is not None and current.data == key:
+            self.head = current.next
+            return True
+
+        previous = None
+        while current is not None and current.data != key:
+            previous = current
+            current = current.next
+
+        if current is None:
+            return False  # tapılmadı
+
+        previous.next = current.next
+        return True
+
+    def search(self, key):
+        current = self.head
+        position = 0
+        while current is not None:
+            if current.data == key:
+                return position
+            current = current.next
+            position += 1
+        return -1
