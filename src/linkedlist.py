@@ -65,3 +65,39 @@ class LinkedList:
             current = current.next
             position += 1
         return -1
+
+    def reverse(self):
+        previous = None
+        current = self.head
+        while current is not None:
+            next_node = current.next
+            current.next = previous
+            previous = current
+            current = next_node
+        self.head = previous
+
+
+def main():
+    my_list = LinkedList()
+
+    my_list.insert_at_beginning(20)
+    my_list.insert_at_beginning(10)
+    my_list.insert_at_end(30)
+    my_list.insert_at_end(40)
+    print("Siyahı:")
+    my_list.display()
+
+    print("30 mövqeyi:", my_list.search(30))
+    print("99 mövqeyi:", my_list.search(99))
+
+    my_list.delete_node(20)
+    print("20 silindikdən sonra:")
+    my_list.display()
+
+    my_list.reverse()
+    print("Tərsinə çevrildikdən sonra:")
+    my_list.display()
+
+
+if __name__ == "__main__":
+    main()
